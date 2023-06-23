@@ -1,0 +1,39 @@
+body {
+    background: #4e4d4d;
+    color: white;
+    display: grid;
+    grid-template-columns: 3fr 10fr;
+    width: 100vw;
+    text-align: center;
+}
+
+nav {
+    padding: 20px 15%;
+    border-right: solid 1px white;
+    height: 100vh
+}
+
+nav section {
+    justify-content: space-around;
+    width: 80%;
+    margin: auto;
+
+}
+
+nav div {
+    margin-bottom: 20px;
+}
+
+
+/* Propiedades */
+
+#result{
+    padding: 0px 5%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 45px;
+}
+
+
+
+
