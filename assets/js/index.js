@@ -59,7 +59,7 @@ button.addEventListener('click', function boton() {
   let minCuarto = parseInt(maxMetrosInput.value);
 
   let propiedadesFiltradas = propiedadesJSON.filter(function (propiedad) {
-    return propiedad.m >= minMetros && propiedad.m <= maxMetros && propiedad.rooms <= minCuarto;
+    return propiedad.m >= minMetros && propiedad.m <= maxMetros && propiedad.rooms >= minCuarto;
   });
 
   if (isNaN(minMetros) || isNaN(maxMetros) || isNaN(minCuarto) || minMetros > maxMetros) {
