@@ -50,7 +50,7 @@ let propiedadesFiltradas = propiedadesJSON.filter(function (propiedad) {
 let button = document.querySelector("#btn");
 let minMetrosInput = document.querySelector("#minMetros");
 let maxMetrosInput = document.querySelector("#maxMetros");
-let minCuartoInput = document.querySelector("#minCuarto");
+let minCuartoInput = document.querySelector("#minCuartos");
 let result = document.querySelector("#result");
 
 button.addEventListener('click', function boton() {
