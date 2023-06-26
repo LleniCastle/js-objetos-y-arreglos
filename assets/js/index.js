@@ -56,7 +56,7 @@ let result = document.querySelector("#result");
 button.addEventListener('click', function boton() {
   let minMetros = parseInt(minMetrosInput.value);
   let maxMetros = parseInt(maxMetrosInput.value);
-  let minCuarto = parseInt(maxMetrosInput.value);
+  let minCuarto = parseInt(minCuartoInput.value);
 
   let propiedadesFiltradas = propiedadesJSON.filter(function (propiedad) {
     return propiedad.m >= minMetros && propiedad.m <= maxMetros && propiedad.rooms >= minCuarto;
