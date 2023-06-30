@@ -43,43 +43,47 @@ const propiedadesJSON = [
   }
 ];
 
-let propiedadesFiltradas = propiedadesJSON.filter(function (propiedad) {
-  return propiedad.m >= minMetros && propiedad.m <= maxMetros;
-});
-
 let button = document.querySelector("#btn");
 let minMetrosInput = document.querySelector("#minMetros");
 let maxMetrosInput = document.querySelector("#maxMetros");
 let minCuartoInput = document.querySelector("#minCuartos");
 let result = document.querySelector("#result");
 
+mostrarPropiedades(propiedadesJSON) 
+
 button.addEventListener('click', function boton() {
   let minMetros = parseInt(minMetrosInput.value);
   let maxMetros = parseInt(maxMetrosInput.value);
   let minCuarto = parseInt(minCuartoInput.value);
-
+  
+  if (isNaN(minMetros) || isNaN(maxMetros) || isNaN(minCuarto)
+  || minMetros > maxMetros || minCuarto<0 || minMetros<0 || maxMetros<0) {
+    alert("Por favor, ingresa rangos de búsqueda válidos."); return
+  }
+  
   let propiedadesFiltradas = propiedadesJSON.filter(function (propiedad) {
-    return propiedad.m >= minMetros && propiedad.m <= maxMetros && propiedad.rooms >= minCuarto;
+    return (propiedad.m >= minMetros && propiedad.m <= maxMetros) && (propiedad.rooms >= minCuarto);
   });
-
-  if (isNaN(minMetros) || isNaN(maxMetros) || isNaN(minCuarto) || minMetros > maxMetros) {
-    alert("Por favor, ingresa rangos de búsqueda válidos.");
-  } else if (propiedadesFiltradas.length === 0) {
-    alert("No se encontraron propiedades con los parámetros de búsqueda.")
-  } else { mostrarPropiedades(propiedadesFiltradas) };
+  
+  console.log("funcion de click a buscar: ", propiedadesFiltradas)
+  
+  if (propiedadesFiltradas.length === 0) {
+    alert("No se encontraron propiedades con los parámetros de búsqueda.");
+    mostrarPropiedades(propiedadesFiltradas)
+    return
+  } else { mostrarPropiedades(propiedadesFiltradas)};
 });
-
 
 function mostrarPropiedades(propiedadesJSON) {
   let html = '';
   for (let propiedad of propiedadesJSON) {
-    html += ` 
-    <div style="margin: auto; background: rgba(255, 255, 255, 0.068); 
-    box-shadow: 0px 0px 7px 1px rgba(255, 255, 255, 0.39); height: 350px; display: flex; 
+    html += `
+    <div style="margin: auto; background: rgba(255, 255, 255, 0.068);
+    box-shadow: 0px 0px 7px 1px rgba(255, 255, 255, 0.39); height: 350px; display: flex;
     flex-direction: column; justify-content: space-between;">
-      <div class="img">          
+      <div class="img">
         <img src="${propiedad.src}" style="height: 150px;  height: 150px; width: 100%;" alt="${propiedad.name}">
-      </div>  
+      </div>
       <section class="propiedadsection" style="padding: 10px 20px;">
           <h5>${propiedad.name}</h5>
           <div class="d-flex justify-content-between">
@@ -88,13 +92,13 @@ function mostrarPropiedades(propiedadesJSON) {
           </div>
           <p class="my-3">${propiedad.description}</p>
           <button class="btn btn-info ">Ver más</button>
-      </section>  
-    </div>  
+      </section>
+    </div>
     `;
   }
-
+  
   result.innerHTML = html;
-
+  
   let contador = document.querySelector("#contador");
   contador.textContent = propiedadesJSON.length;
 };
